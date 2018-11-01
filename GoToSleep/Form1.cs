@@ -34,7 +34,11 @@ namespace GoToSleep
             Application.Exit();
         }
 
-        private void Shutdown()
+        /// <summary>
+        /// Shuts down or reboots the system
+        /// </summary>
+        /// <param name="flag"> 1 is shut down, 2 is reboot. </param>
+        private void DieFirst(int flag)
         {
             ManagementBaseObject mboShutdown = null;
             ManagementClass mcWin32 = new ManagementClass("Win32_OperatingSystem");
@@ -44,7 +48,7 @@ namespace GoToSleep
             ManagementBaseObject mboShutdownParams =
                 mcWin32.GetMethodParameters("Win32Shutdown");
 
-            mboShutdownParams["Flags"] = "1";
+            mboShutdownParams["Flags"] = flag.ToString();
             mboShutdownParams["Reserved"] = "0";
             foreach (ManagementObject manObj in mcWin32.GetInstances())
             {
