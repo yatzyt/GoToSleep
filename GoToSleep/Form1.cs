@@ -26,5 +26,11 @@ namespace GoToSleep
             Application.SetSuspendState(PowerState.Suspend, true, true);
             Application.Exit();
         }
+
+        private void Hibernate()
+        {
+            Application.SetSuspendState(PowerState.Hibernate, true, true);
+            Application.Exit();
+        }
     }
 }
