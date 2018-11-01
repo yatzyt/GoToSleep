@@ -59,17 +59,23 @@ namespace GoToSleep
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Hibernate();
+            //Hibernate();
+            MessageBox.Show("test");
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            DieFirst(1);
+            //DieFirst(1);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            DieFirst(2);
+            //DieFirst(2);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            button4.Hide();
         }
     }
 }
