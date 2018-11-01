@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Management;
 
 
 namespace GoToSleep
@@ -31,6 +32,25 @@ namespace GoToSleep
         {
             Application.SetSuspendState(PowerState.Hibernate, true, true);
             Application.Exit();
+        }
+
+        private void Shutdown()
+        {
+            ManagementBaseObject mboShutdown = null;
+            ManagementClass mcWin32 = new ManagementClass("Win32_OperatingSystem");
+            mcWin32.Get();
+
+            mcWin32.Scope.Options.EnablePrivileges = true;
+            ManagementBaseObject mboShutdownParams =
+                mcWin32.GetMethodParameters("Win32Shutdown");
+
+            mboShutdownParams["Flags"] = "1";
+            mboShutdownParams["Reserved"] = "0";
+            foreach (ManagementObject manObj in mcWin32.GetInstances())
+            {
+                mboShutdown = manObj.InvokeMethod("Win32Shutdown", mboShutdownParams, null);
+            }
+
         }
     }
 }
