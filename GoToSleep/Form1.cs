@@ -56,5 +56,20 @@ namespace GoToSleep
             }
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Hibernate();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DieFirst(1);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DieFirst(2);
+        }
     }
 }
